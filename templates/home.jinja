@@ -1,0 +1,23 @@
+{% extends "base.jinja" %}
+
+
+{% block head %}
+<h1>Welcome {{name}}</h1>
+<form action="/logout"><button>LOGOUT</button></form>
+{% endblock  %}
+
+
+{% block page_content %}
+<ul>
+    {% for item in menu %}
+    <h3>{{ item[0]}} </h3>
+    <img src="{{ item[3] }}" alt="food">
+    <p>{{item[1]}}</p>
+    {% for all in item[1] %}
+    <p>{{all}}</p>
+    {% endfor %}
+    
+    {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.jinja" %}
+{% block page_content %}
+
+
+<h1>ALLIE</h1>
+<h2>Sign Up</h2>
+    <form method="POST" action="/create_acount">
+    <div> <label>
+                Kitchen Name
+            </label>
+    <input type="text" name="kitchen"></div>
+    <div> <label>
+                User Name
+            </label>
+    <input type="text" name="user_name"></div>
+           <div> <label>
+                Email
+            </label>
+    <input type="text" name="email"></div>
+            <div><label>
+                Password
+            </label>
+    <input type="text" name="password"></div>
+    <input type="submit">
+    </form>
+    {% endblock %}
+    
