@@ -20,12 +20,22 @@ CREATE TABLE menu (
     active BOOLEAN,
     images TEXT,
     kitchen_id INTEGER
+    CONSTRAINT fk_kitchen
+      FOREIGN KEY(kitchen_id)
+	  REFERENCES kitchen(id)
 );
+
+ALTER TABLE menu ADD CONSTRAINT fk_kitchen
+      FOREIGN KEY(kitchen_id)
+	  REFERENCES kitchen_table(kitchen_id);
 
 sql_write(
         "INSERT INTO users (email, name, password_hash, restaurants, admin) VALUES (%s, %s, %s, true)",
         [email, name, password_hash, restaurants]
     )
+
+UPDATE menu SET dish = %s, allergies = %s, active = TRUE, images = %s WHERE id = %s;
+UPDATE users SET password_hash = %s WHERE email = %s;
 
 DELETE FROM users WHERE kitchen_id = 1;
 DELETE FROM menu WHERE dish = 'Baby Octopus';

@@ -2,22 +2,27 @@
 
 
 {% block head %}
-<h1>Welcome {{name}}{{admin}}</h1>
+<h1>Welcome {{name}}</h1>
 <form action="/logout"><button>LOGOUT</button></form>
 <ul id='head'>
+  {% if admin == True  %} 
   <li id='head'><a href="/create_dish">Create Dish</a></li>
-  <li id='head'><a href="/">Home</a></li>
   <li id='head'><a href="/add_user">Add User</a></li>
+  {% endif %}
+  <li id='head'><a href="/">Home</a></li>
+  <li id='head'><a href="/settings">Settings</a></li>
+  
   
 </ul>
 {{ super() }}
 {% endblock  %}
 
 
+
 {% block page_content %}
 <ul>
     {% for item in menu %}
-    <h3>{{ item[0]}}   <a href="/edit_food/?id={{item[5]}}">EDIT</a> </h3>
+    <h3>{{ item[0]}}  {% if admin == True  %} <a href="/edit_food/?id={{item[5]}}">EDIT</a> {% endif %}</h3>
     <img src="{{ item[3] }}" alt="food">
     {% set list1 = item[1].split(',') %}
     {% for list in list1 %}

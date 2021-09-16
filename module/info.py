@@ -42,10 +42,22 @@ def select_edit_food(id):
 
 def edit_food(dish, allergies, image, id):
 
-    return sql_write('UPDATE menu SET dish = %s, allergies = %s, active = TRUE, images = %s WHERE id = %s;', [dish, allergies, image, id])  
+    return sql_write('UPDATE menu SET dish = %s, allergies = %s, active = TRUE, images = %s WHERE id = %s;', [dish, allergies, image, id])
+
+
+def change_new_password(new_password, id):
+
+    return sql_write('UPDATE users SET password_hash = %s WHERE id = %s;', [new_password, id])
                               
 
+def staff(id):
 
+    return sql_select_wright('SELECT name FROM users WHERE restaurant_id = %s;', [id])
+
+
+def change_admin(admin, name):
+
+    return sql_write('UPDATE users SET admin = %s WHERE name = %s;', [admin, name])
     
 
 

@@ -4,7 +4,7 @@ import os
 import psycopg2
 import bcrypt
 
-from module.info import create_user, create_kitchen, kitchen_id, get_password, get_menu, input_dish, create_user_not_admin, edit_food, select_edit_food
+from module.info import create_user, create_kitchen, kitchen_id, get_password, get_menu, input_dish, create_user_not_admin, edit_food, select_edit_food, change_new_password, staff
 
 DB_URL = os.environ.get("DATABASE_URL", "dbname=allie_db")
 
@@ -19,12 +19,13 @@ def home():
     if session.get('user_name') == None:
         return redirect('/login')
     
+    admin = session.get('admin')
     name = session.get('user_name')
     id = session.get('id')
     menu = get_menu(id)
     
     
-    return render_template('home.jinja', name=name, menu=menu)
+    return render_template('home.jinja', name=name, menu=menu, admin=admin)
 
 @app.route('/login')
 def login():
@@ -116,6 +117,47 @@ def add_user_action():
     create_user_not_admin(email, name, password, id)
     
     return redirect('/add_user')
+
+@app.route('/settings')
+def setting():
+    id = session.get('id')
+    names = staff(id)
+    print(names)
+
+    return render_template('setting.jinja', names=names)
+
+
+@app.route('/change_password', methods=['POST'])
+def change_password():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    new_password = request.form.get('new_password')
+    new_password = bcrypt.hashpw(new_password.encode(), bcrypt.gensalt()).decode()
+    info = get_password(email)
+    if info == []:
+        flash("Wrong Email")
+        return redirect('/login')
+    password_hash = info[0][3]
+    valid = bcrypt.checkpw(password.encode(), password_hash.encode())
+    
+    if valid == False:
+        flash("Wrong Password")
+        return redirect('/login')
+    
+    change_new_password(new_password, info[0][0])
+    flash("Password Change Successful!")
+
+    return redirect('/settings')
+
+
+@app.route('/make_admin', methods=['POST'])
+def make_admin():
+    name = request.form.get('name')
+    admin = request.form.get('admin')
+   
+
+
+    return redirect('/settings')
 
 
 @app.route('/edit_food/')

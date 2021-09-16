@@ -17,15 +17,14 @@
     <input type="submit">
     </form>
     <a href="/sign_up">Create Account</a>
+    
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages  %}
     <h3>{{message}}</h3>
     {% endfor %}
-    
-    
     {% endif %}
-    
     {% endwith %}
+
     {% endblock  %}
     

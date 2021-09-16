@@ -1,0 +1,57 @@
+{% extends "home.jinja" %}
+
+{% block head %}
+{{ super() }}
+{% endblock  %}
+
+
+
+{% block page_content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages  %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+    
+
+
+<h2>Change password</h2>
+    <form method="POST" action="/change_password">
+    
+           <div> <label>
+                Email
+            </label>
+    <input type="text" name="email"></div>
+            <div><label>
+                Password
+            </label>
+    <input type="text" name="password"></div>
+    <div><label>
+                New Password
+            </label>
+    <input type="text" name="new_password"></div>
+    <input type="submit">
+    </form>
+    
+<h2>Make Admin</h2>
+    <form method="POST" action="/make_admin">
+  <label>choose staff:</label>
+  <select name="name">
+  {% for name in names %}
+    <option value='{{name[0]}}'>{{name[0]}}</option>
+    {% endfor %}
+  </select>
+  <label>Admin:</label>
+  <select name="admin">
+    <option value='TRUE'>Make Admin</option>
+    <option value='false'>Remove Admin</option>
+  </select>
+  <input type="submit">
+</form>
+
+
+{% endblock  %}
