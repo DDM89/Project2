@@ -1,14 +1,14 @@
-{% extends "base.jinja" %}
+{% extends "home.jinja" %}
+
+{% block head %}
+{{ super() }}
+{% endblock  %}
+
 {% block page_content %}
 
-
-<h1>ALLIE</h1>
-<h2>Sign Up</h2>
-    <form method="POST" action="/create_acount">
-    <div> <label>
-                Kitchen Name
-            </label>
-    <input type="text" name="kitchen"></div>
+<h2>{{admin}}</h2>
+<h2>Add User</h2>
+    <form method="POST" action="/add_user_action">
     <div> <label>
                 User Name
             </label>
@@ -23,6 +23,4 @@
     <input type="text" name="password"></div>
     <input type="submit">
     </form>
-    {% endblock %}
-
-    
+    {% endblock  %}

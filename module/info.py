@@ -13,7 +13,14 @@ def create_user(email, name, password_hash, restaurant_id):
     return sql_write(
         "INSERT INTO users (email, name, password_hash, restaurant_id, admin) VALUES (%s, %s, %s, %s, true)",
         [email, name, password_hash, restaurant_id]
-    )    
+    )
+
+def create_user_not_admin(email, name, password_hash, restaurant_id):
+
+    return sql_write(
+        "INSERT INTO users (email, name, password_hash, restaurant_id, admin) VALUES (%s, %s, %s, %s, false)",
+        [email, name, password_hash, restaurant_id]
+    )            
 
 def get_password(email):
 
@@ -23,14 +30,20 @@ def get_menu(id):
 
     return sql_select_wright('SELECT * FROM menu WHERE kitchen_id = %s AND active = TRUE;', [id])
 
-def get_allergies(id):
+def input_dish(dish, allergies, image, id):
     
-    split_array = []
-    food = sql_select_wright('SELECT allergies FROM menu WHERE kitchen_id = %s AND active = TRUE;', [id])
-    for each in food:
-       element = each[0].split(', ') 
-       split_array.append(element)
-    return split_array  
+    return sql_write("INSERT INTO menu (dish, allergies, active, images, kitchen_id) VALUES (%s, %s, true, %s, %s);", [dish, allergies, image, id])
+
+def get_kitchen_name(id):
+    return sql_select_wright("SELECT * FROM kitchen_table WHERE kitchen_id = %s;", [id])[0][1]
+
+def select_edit_food(id):
+    return sql_select_wright('SELECT * FROM menu WHERE id = %s ;', [id])
+
+def edit_food(dish, allergies, image, id):
+
+    return sql_write('UPDATE menu SET dish = %s, allergies = %s, active = TRUE, images = %s WHERE id = %s;', [dish, allergies, image, id])  
+                              
 
 
     

@@ -28,12 +28,18 @@ sql_write(
     )
 
 DELETE FROM users WHERE kitchen_id = 1;
-DELETE FROM kitchen_table WHERE kitchen_id = 1;
+DELETE FROM menu WHERE dish = 'Baby Octopus';
+
+ALTER TABLE menu
+ADD id SERIAL PRIMARY KEY;
+
+
 
 SELECT * FROM menu WHERE kitchen_id = 7 AND active = TRUE;
+SELECT * FROM kitchen_table WHERE kitchen_id = 7;
 
 -- cafe Sydney
-INSERT INTO menu (dish, allergies, active, images, kitchen_id) VALUES ('Baby Octopus', '["Garlic", "Onion", "Seafood", "Gluten"]',
+INSERT INTO menu (dish, allergies, active, images, kitchen_id) VALUES ('Baby Octopus', 'Garlic, Onion, Seafood, Gluten',
  true, 'https://theupsider.com.au/wp-content/uploads/2019/08/Cafe-Sydney-lunch-4.jpg', 7);
 
 INSERT INTO menu (dish, allergies, active, images, kitchen_id) VALUES ('Vegan Dosa', 'Nuts, Onion, Garlic',
@@ -50,4 +56,5 @@ INSERT INTO menu (dish, allergies, active, images, kitchen_id) VALUES ('pasta ag
  true, 'https://www.thewholesomedish.com/wp-content/uploads/2018/07/Best-Lasagna-550-500x375.jpg', 8);
 
  INSERT INTO menu (dish, allergies, active, images, kitchen_id) VALUES ('fettuccine alfredo', 'Dairy, Onion, Garlic, Gluten',
- true, 'https://hips.hearstapps.com/delish/assets/17/36/1504715566-delish-fettuccine-alfredo.jpg', 8);   
+ true, 'https://hips.hearstapps.com/delish/assets/17/36/1504715566-delish-fettuccine-alfredo.jpg', 8); 
+

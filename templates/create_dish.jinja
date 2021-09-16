@@ -1,0 +1,30 @@
+{% extends "home.jinja" %}
+
+{% block head %}
+{{ super() }}
+{% endblock  %}
+
+
+
+{% block page_content %}
+
+
+
+<h2>Create Dish</h2>
+    <form method="POST" action="/create_dish_action">
+           <div> <label>
+                Dish
+            </label>
+    <input type="text" name="dish"></div>
+            <div><label>
+                Allergies
+            </label>
+    <input type="text" placeholder='e.g. Garic,Onion....'name="allergies"></div>
+    <div><label>
+                Image URL
+            </label>
+    <input type="text" name="image"></div>
+    
+    <input type="submit">
+    </form>
+    {% endblock  %}
