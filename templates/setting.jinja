@@ -8,50 +8,17 @@
 
 {% block page_content %}
 
+<form action="/logout"><button class="logout">LOGOUT</button></form>
+
 {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages  %}
-    <h3>{{message}}</h3>
+    <h4>{{message}}</h4>
     {% endfor %}
     {% endif %}
     {% endwith %}
     
-    
 
-
-{# <h2>Change password</h2>
-    <form method="POST" action="/change_password">
-    
-           <div> <label>
-                Email
-            </label>
-    <input type="text" name="email"></div>
-            <div><label>
-                Password
-            </label>
-    <input type="text" name="password"></div>
-    <div><label>
-                New Password
-            </label>
-    <input type="text" name="new_password"></div>
-    <input type="submit">
-    </form>
-    
-<h2>Make Admin</h2>
-    <form method="POST" action="/make_admin">
-  <label>choose staff:</label>
-  <select name="name">
-  {% for name in names %}
-    <option value='{{name[0]}}'>{{name[0]}}</option>
-    {% endfor %}
-  </select>
-  <label>Admin:</label>
-  <select name="admin">
-    <option value='TRUE'>Make Admin</option>
-    <option value='false'>Remove Admin</option>
-  </select>
-  <input type="submit">
-</form> #}
 
 <form method="POST" action="/change_password">
   <div class="form">
@@ -68,12 +35,15 @@
       </div>
       <div class="input-container ic2">
         <input name='new_password' id="new_password" class="input" type="text" placeholder=" " />
-        <div class="cut"></div>
+        <div class="cut-new"></div>
         <label for="new_password" class="placeholder">New Password</label>
       </div>
       <button type="text" class="submit">Change</button>
     </div>
 </form>
+{% if admin == True  %}
+
+
 
 <form method="POST" action="/make_admin">
 <div class="form-admin">
@@ -99,6 +69,7 @@
       <button type="text" class="submit">Change Admin</button>
     </div>
 </form>
+{% endif %}
 
 
 {% endblock  %}

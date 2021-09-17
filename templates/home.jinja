@@ -2,18 +2,18 @@
 
 
 {% block head %}
-<h1>Welcome {{name}}</h1>
-<form action="/logout"><button>LOGOUT</button></form>
-<ul id='head'>
+<img class="allie" src="../static/allie.png" alt="logo">
+<h1>{{kitchen}}</h1>
+  <nav>
+  <a href="/">Home</a>
   {% if admin == True  %} 
-  <li id='head'><a href="/create_dish">Create Dish</a></li>
-  <li id='head'><a href="/add_user">Add User</a></li>
+  <a href="/create_dish">Create Dish</a>
+  <a href="/add_user">Add User</a>
   {% endif %}
-  <li id='head'><a href="/">Home</a></li>
-  <li id='head'><a href="/settings">Settings</a></li>
+  <a href="/settings">Settings</a>
   
-  
-</ul>
+  </nav>
+
 {{ super() }}
 {% endblock  %}
 
@@ -21,22 +21,23 @@
 
 {% block page_content %}
 {% for item in menu %}
-{# <div class='container'> #}
-<div class='item'>
+
+<div class='form'>
 <ul>
     
-    <h3>{{ item[0]}}  {% if admin == True  %} <a href="/edit_food/?id={{item[5]}}">EDIT</a> {% endif %}</h3>
+    <h3>{{ item[0]}}</h3>  {% if admin == True  %} <button class="edit"><a class="edit" href="/edit_food/?id={{item[5]}}">EDIT</a></button> {% endif %}
     <img src="{{ item[3] }}" alt="food">
+    <h3>Allergies</h3>
     {% set list1 = item[1].split(',') %}
     {% for list in list1 %}
-    
     <li>{{ list }}</li>
+    
     {% endfor %}
     
     
     
     </ul>
 </div>
-{# </div>     #}
+
 {% endfor %}
 {% endblock %}

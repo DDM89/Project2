@@ -1,45 +1,74 @@
 body {
     max-width: 900px;
     margin: 0 auto;
-    background-color: #F5F5F5;
+    background-color: whitesmoke;
 }
 
-/* main {
-    display: flex;
-    flex: 1;
-    max-width: 643px;
-    flex-direction: column;
-    align-items: center;
-} */
 
 img {
     height: 250px;
     width: 300px;
+    box-shadow: 3px 4px #888888;
+    border-radius: 10px;
+}
+.allie {
+    height: 200px;
+    width: 200px;
+    box-shadow: 0px 0px #888888;
+}
+
+ul {
+    padding: initial;
 }
 
 h3 {
-    border-top: solid green 2px;
+    color: #5f5757;
+    margin: 8px;
 }
 
-  ul#head {
-      display: inline;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #F5F5F5;
-  }
-
-  li#head {
-    display: inline;
-    color: white;
-    text-align: center;
-    padding: 16px;
+li {
+    
+    display: inline-block;
+    color: #5f5757;
     text-decoration: none;
-  }
-  li#head:hover {
-    background-color: #e70a0a;
-  }
+    margin: 10px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+
+
+  /* head nave bar style */
+  nav {
+	margin: 20px auto;
+    width: 400px;
+    height: 50px;
+    background-color: #00ad31;
+    border-radius: 8px;
+    font-size: 0;
+}
+nav a {
+    width: 25%;
+    border-radius: 8px;
+    line-height: 50px;
+    font-size: 15px;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+nav a:hover {
+    transition: 0.5s;
+    background-color: #056320;
+}
+  
+  /* head nave bar style */
 
   /* content */
 
@@ -49,26 +78,24 @@ h3 {
     align-items: center;
   }
   
-  .item {
-    
-    margin-bottom: 10px;
-  }
 
   /* content */
 
   /* form style */
 
   .form {
-    background-color: #15172b;
+    background-color: whitesmoke;
     border-radius: 20px;
     box-sizing: border-box;
     height: 500px;
-    padding: 20px;
+    padding: 10px;
     width: 320px;
+    margin: 10px;
+
   }
   
   .title {
-    color: #eee;
+    color: #5f5757;
     font-family: sans-serif;
     font-size: 36px;
     font-weight: 600;
@@ -76,7 +103,7 @@ h3 {
   }
   
   .subtitle {
-    color: #eee;
+    color: #5f5757;
     font-family: sans-serif;
     font-size: 16px;
     font-weight: 600;
@@ -98,11 +125,11 @@ h3 {
   }
   
   .input {
-    background-color: #303245;
+    background-color: #c9cad4;
     border-radius: 12px;
     border: 0;
     box-sizing: border-box;
-    color: #eee;
+    color: #1d1d26;
     font-size: 18px;
     height: 100%;
     outline: 0;
@@ -111,7 +138,7 @@ h3 {
   }
   
   .cut {
-    background-color: #15172b;
+    background-color: whitesmoke;
     border-radius: 10px;
     height: 20px;
     left: 20px;
@@ -120,6 +147,18 @@ h3 {
     transform: translateY(0);
     transition: transform 200ms;
     width: 76px;
+  }
+
+  .cut-new {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: 100px;
   }
   
   .cut-short {
@@ -130,9 +169,14 @@ h3 {
   .input:not(:placeholder-shown) ~ .cut {
     transform: translateY(8px);
   }
+
+  .input:focus ~ .cut-new,
+  .input:not(:placeholder-shown) ~ .cut-new {
+    transform: translateY(8px);
+  }
   
   .placeholder {
-    color: #65657b;
+    color: #1d1d26;
     font-family: sans-serif;
     left: 20px;
     line-height: 14px;
@@ -149,7 +193,7 @@ h3 {
   }
   
   .input:not(:placeholder-shown) ~ .placeholder {
-    color: #808097;
+    color: #c9cad4;
   }
   
   .input:focus ~ .placeholder {
@@ -157,31 +201,30 @@ h3 {
   }
   
   .submit {
-    background-color: #08d;
+    background-color: #00ad31;
     border-radius: 12px;
     border: 0;
     box-sizing: border-box;
-    color: #eee;
+    color: white;
     cursor: pointer;
     font-size: 18px;
     height: 50px;
     margin-top: 38px;
-    /* // outline: 0; */
     text-align: center;
     width: 100%;
   }
   
   .submit:active {
-    background-color: #06b;
+    background-color: #00ad31;
   }
 
   .lable-edit {
-    color: white;
+    color: #1d1d26;
     margin-left: 12px;
   }
   
   .form-signup {
-    background-color: #15172b;
+    background-color: whitesmoke;
     border-radius: 20px;
     box-sizing: border-box;
     height: 550px;
@@ -190,13 +233,40 @@ h3 {
   }
 
   .form-admin {
-    background-color: #15172b;
+    background-color: whitesmoke;
     border-radius: 20px;
     box-sizing: border-box;
     height: 425px;
     padding: 20px;
     width: 320px;
     margin-top: 15px;
+  }
+
+  .logout {
+    background-color: #00ad31;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    height: 40px;
+    border: 0;
+  }
+
+  .logout:hover {
+    background-color: #dc2f55;
+    transition: 0.5s;
+  }
+
+  .edit {
+    text-decoration: none;
+    background-color: #00ad31;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    height: 30px;
+    border: 0;
+    margin: 2px;
+    color: white;
   }
 
   /* form style */

@@ -4,7 +4,7 @@ import os
 import psycopg2
 import bcrypt
 
-from module.info import create_user, create_kitchen, kitchen_id, get_password, get_menu, input_dish, create_user_not_admin, edit_food, select_edit_food, change_new_password, staff, change_admin
+from module.info import create_user, create_kitchen, kitchen_id, get_password, get_menu, input_dish, create_user_not_admin, edit_food, select_edit_food, change_new_password, staff, change_admin, get_kitchen_name
 
 DB_URL = os.environ.get("DATABASE_URL", "dbname=allie_db")
 
@@ -22,10 +22,12 @@ def home():
     admin = session.get('admin')
     name = session.get('user_name')
     id = session.get('id')
+    kitchen =session.get('kitchen')
     menu = get_menu(id)
     
     
-    return render_template('home.jinja', name=name, menu=menu, admin=admin)
+    
+    return render_template('home.jinja', name=name, menu=menu, admin=admin, kitchen=kitchen)
 
 @app.route('/login')
 def login():
@@ -53,6 +55,7 @@ def login_action():
         flash("Wrong Password")
         return redirect('/login')
     
+    session['kitchen'] = get_kitchen_name(info[0][4])
     session['id'] = info[0][4]
     session['user_name'] = info[0][1]
     session['admin'] = info[0][5]
@@ -84,9 +87,10 @@ def create_acount():
 
 @app.route('/create_dish')
 def create_dish():
-    
+    admin = session.get('admin')
+    kitchen =session.get('kitchen')
 
-    return render_template('create_dish.jinja')
+    return render_template('create_dish.jinja', admin=admin, kitchen=kitchen)
 
 @app.route('/create_dish_action', methods=['POST'])
 def create_dish_action():
@@ -100,10 +104,10 @@ def create_dish_action():
 
 @app.route('/add_user')
 def add_user():
-    # admin = session.get('admin')
+    admin = session.get('admin')
+    kitchen =session.get('kitchen')
     
-    
-    return render_template('add_user.jinja')
+    return render_template('add_user.jinja', admin=admin, kitchen=kitchen)
 
 
 @app.route('/add_user_action', methods=['POST'])
@@ -122,9 +126,10 @@ def add_user_action():
 def setting():
     id = session.get('id')
     names = staff(id)
-    print(names)
+    admin = session.get('admin')
+    kitchen =session.get('kitchen')
 
-    return render_template('setting.jinja', names=names)
+    return render_template('setting.jinja', names=names, admin=admin, kitchen=kitchen)
 
 
 @app.route('/change_password', methods=['POST'])
@@ -162,9 +167,12 @@ def make_admin():
 
 @app.route('/edit_food/')
 def edit_food_page():
+    admin = session.get('admin')
     food_id = request.args.get('id')
     menu = select_edit_food(food_id)
-    return render_template('edit_food.jinja', dish=menu) 
+    kitchen =session.get('kitchen')
+
+    return render_template('edit_food.jinja', dish=menu, admin=admin, kitchen=kitchen) 
 
 
 @app.route('/edit_dish_action', methods=['POST'])
