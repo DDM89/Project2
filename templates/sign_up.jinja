@@ -2,7 +2,7 @@
 {% block page_content %}
 
 
-<h1>ALLIE</h1>
+{# <h1>ALLIE</h1>
 <h2>Sign Up</h2>
     <form method="POST" action="/create_acount">
     <div> <label>
@@ -22,7 +22,37 @@
             </label>
     <input type="text" name="password"></div>
     <input type="submit">
-    </form>
+    </form> #}
+<form method="POST" action="/create_acount">
+    <div class="form-signup">
+      
+      <div class="title">Sign UP</div>
+      <div class="input-container ic1">
+        <input name='kitchen' id="kitchen" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="kitchen" class="placeholder">Kitchen Name</label>
+      </div>
+      <div class="input-container ic1">
+        <input name='user_name' id="user_name" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="user_name" class="placeholder">User Name</label>
+      </div>
+      <div class="input-container ic1">
+        <input name='email' id="email" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="email" class="placeholder">Email</label>
+      </div>
+      <div class="input-container ic2">
+        <input name='password' id="password" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="password" class="placeholder">Password</label>
+      </div>
+      <button type="text" class="submit">submit</button>
+    </div>
+</form>
+
+
+
     {% endblock %}
 
     

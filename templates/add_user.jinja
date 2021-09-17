@@ -6,7 +6,7 @@
 
 {% block page_content %}
 
-<h2>{{admin}}</h2>
+{# <h2>{{admin}}</h2>
 <h2>Add User</h2>
     <form method="POST" action="/add_user_action">
     <div> <label>
@@ -22,5 +22,27 @@
             </label>
     <input type="text" name="password"></div>
     <input type="submit">
-    </form>
+    </form> #}
+<form method="POST" action="/add_user_action">
+<div class="form">
+      
+      <div class="title">Add user</div>
+      <div class="input-container ic1">
+        <input name='user_name' id="user_name" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="user_name" class="placeholder">User Name</label>
+      </div>
+      <div class="input-container ic1">
+        <input name='email' id="email" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="email" class="placeholder">Email</label>
+      </div>
+      <div class="input-container ic2">
+        <input name='password' id="password" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="password" class="placeholder">Password</label>
+      </div>
+      <button type="text" class="submit">submit</button>
+    </div>
+</form>
     {% endblock  %}

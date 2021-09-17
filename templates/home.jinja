@@ -20,8 +20,11 @@
 
 
 {% block page_content %}
+{% for item in menu %}
+{# <div class='container'> #}
+<div class='item'>
 <ul>
-    {% for item in menu %}
+    
     <h3>{{ item[0]}}  {% if admin == True  %} <a href="/edit_food/?id={{item[5]}}">EDIT</a> {% endif %}</h3>
     <img src="{{ item[3] }}" alt="food">
     {% set list1 = item[1].split(',') %}
@@ -31,7 +34,9 @@
     {% endfor %}
     
     
-    {% endfor %}
+    
     </ul>
-
+</div>
+{# </div>     #}
+{% endfor %}
 {% endblock %}

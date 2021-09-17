@@ -4,7 +4,7 @@ import os
 import psycopg2
 import bcrypt
 
-from module.info import create_user, create_kitchen, kitchen_id, get_password, get_menu, input_dish, create_user_not_admin, edit_food, select_edit_food, change_new_password, staff
+from module.info import create_user, create_kitchen, kitchen_id, get_password, get_menu, input_dish, create_user_not_admin, edit_food, select_edit_food, change_new_password, staff, change_admin
 
 DB_URL = os.environ.get("DATABASE_URL", "dbname=allie_db")
 
@@ -154,7 +154,7 @@ def change_password():
 def make_admin():
     name = request.form.get('name')
     admin = request.form.get('admin')
-   
+    change_admin(admin, name)
 
 
     return redirect('/settings')
