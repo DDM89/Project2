@@ -25,28 +25,25 @@ CREATE TABLE menu (
 	  REFERENCES kitchen(id)
 );
 
-ALTER TABLE menu ADD CONSTRAINT fk_kitchen
-      FOREIGN KEY(kitchen_id)
-	  REFERENCES kitchen_table(kitchen_id);
-
-sql_write(
-        "INSERT INTO users (email, name, password_hash, restaurants, admin) VALUES (%s, %s, %s, true)",
-        [email, name, password_hash, restaurants]
-    )
-
-UPDATE menu SET dish = %s, allergies = %s, active = TRUE, images = %s WHERE id = %s;
-UPDATE users SET password_hash = %s WHERE email = %s;
-
-DELETE FROM users WHERE kitchen_id = 1;
-DELETE FROM menu WHERE dish = 'Baby Octopus';
-
-ALTER TABLE menu
-ADD id SERIAL PRIMARY KEY;
+-- ALTER TABLE menu ADD CONSTRAINT fk_kitchen
+--       FOREIGN KEY(kitchen_id)
+-- 	  REFERENCES kitchen_table(kitchen_id);
 
 
 
-SELECT * FROM menu WHERE kitchen_id = 7 AND active = TRUE;
-SELECT * FROM kitchen_table WHERE kitchen_id = 7;
+-- UPDATE menu SET dish = %s, allergies = %s, active = TRUE, images = %s WHERE id = %s;
+-- UPDATE users SET password_hash = %s WHERE email = %s;
+
+-- DELETE FROM users WHERE kitchen_id = 1;
+-- DELETE FROM menu WHERE dish = 'Baby Octopus';
+
+-- ALTER TABLE menu
+-- ADD id SERIAL PRIMARY KEY;
+
+
+
+-- SELECT * FROM menu WHERE kitchen_id = 7 AND active = TRUE;
+-- SELECT * FROM kitchen_table WHERE kitchen_id = 7;
 
 -- cafe Sydney
 INSERT INTO menu (dish, allergies, active, images, kitchen_id) VALUES ('Baby Octopus', 'Garlic, Onion, Seafood, Gluten',

@@ -4,7 +4,7 @@ import os
 import psycopg2
 import bcrypt
 
-from module.info import create_user, create_kitchen, kitchen_id, get_password, get_menu, input_dish, create_user_not_admin, edit_food, select_edit_food, change_new_password, staff, change_admin, get_kitchen_name
+from module.info import create_user, create_kitchen, kitchen_id, get_password, get_menu, input_dish, create_user_not_admin, edit_food, select_edit_food, change_new_password, staff, change_admin, get_kitchen_name, get_menu_full, active_action, delete_food_action
 
 DB_URL = os.environ.get("DATABASE_URL", "dbname=allie_db")
 
@@ -28,6 +28,42 @@ def home():
     
     
     return render_template('home.jinja', name=name, menu=menu, admin=admin, kitchen=kitchen)
+
+
+@app.route('/full_menu')
+def full_menu():
+
+    if session.get('user_name') == None:
+        return redirect('/login')
+    
+    admin = session.get('admin')
+    name = session.get('user_name')
+    id = session.get('id')
+    kitchen =session.get('kitchen')
+    menu = get_menu_full(id)
+    print(menu[0][2])
+    
+    
+    return render_template('full_menu.jinja', name=name, menu=menu, admin=admin, kitchen=kitchen)
+
+@app.route('/delete_food', methods=['POST'])
+def delete_food():
+    
+    id = request.form.get('ids')
+    print(id)
+    delete_food_action(id)
+    
+    return redirect('/')
+
+
+@app.route('/active', methods=['POST'])
+def active():
+
+    active = request.form.get('active')
+    id = request.form.get('id')
+    active_action(active, id)
+
+    return redirect('full_menu')    
 
 @app.route('/login')
 def login():
@@ -170,9 +206,9 @@ def edit_food_page():
     admin = session.get('admin')
     food_id = request.args.get('id')
     menu = select_edit_food(food_id)
-    kitchen =session.get('kitchen')
+    kitchen = session.get('kitchen')
 
-    return render_template('edit_food.jinja', dish=menu, admin=admin, kitchen=kitchen) 
+    return render_template('edit_food.jinja', dish=menu, admin=admin, kitchen=kitchen, id=food_id) 
 
 
 @app.route('/edit_dish_action', methods=['POST'])

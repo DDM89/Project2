@@ -1,0 +1,56 @@
+{% extends "base.jinja" %}
+
+
+{% block head %}
+<img class="allie" src="../static/allie.png" alt="logo">
+<h1>{{kitchen}}</h1>
+  <nav>
+  <a href="/">Home</a>
+  {% if admin == True  %} 
+  <a href="/create_dish">Create Dish</a>
+  <a href="/add_user">Add User</a>
+  {% endif %}
+  <a href="/settings">Settings</a>
+  
+  </nav>
+
+{{ super() }}
+{% endblock  %}
+
+
+
+{% block page_content %}
+<div class="title">Full Menu</div>
+{% for item in menu %}
+
+<div class='form'>
+<ul>
+    
+    <h3>{{ item[0]}}</h3>
+    <form method="POST" action="/active">
+    <div class="input-container ic2">
+        <select class="input" name="active">
+        <option value='TRUE'>Active</option>
+        <option value='false'>Not Active</option>
+        </select>
+        <div class="cut"></div>
+        <label for="active" class="placeholder">{{item[2]}}</label>
+       </div>  
+    <button id="change" type="text" class="submit">Change</button> 
+    <input type="hidden" name="id" value="{{item[5]}}">
+    </form> 
+    <img src="{{ item[3] }}" alt="food">
+    <h3>Allergies</h3>
+    {% set list1 = item[1].split(',') %}
+    {% for list in list1 %}
+    <li>{{ list }}</li>
+    
+    {% endfor %}
+    
+    
+    
+    </ul>
+</div>
+
+{% endfor %}
+{% endblock %}

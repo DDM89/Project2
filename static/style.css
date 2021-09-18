@@ -217,6 +217,17 @@ nav a:hover {
   .submit:active {
     background-color: #00ad31;
   }
+  #change {
+    text-decoration: none;
+    background-color: #00ad31;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    height: 30px;
+    border: 0;
+    margin: 2px;
+    color: white;
+  }
 
   .lable-edit {
     color: #1d1d26;

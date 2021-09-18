@@ -3,31 +3,39 @@
 {% block head %}
 {{ super() }}
 {% endblock  %}
-
+    
 
 
 {% block page_content %}
 
 
-    <form method="POST" action="/edit_dish_action" >
+    
     <div class="form">
-      <div class="title">Edit Dish</div>
+      <button class="edit"><a class="edit" href="/full_menu">Full Menu</a></button>
       
+      <div class="title">Edit Dish</div>
+      <form method="POST" action="/edit_dish_action" >
       <div class="input-container ic1">
       <label class='lable-edit'>Dish</label>
-        <input name="dish" id="dish" class="input" type="text" value="{{dish[0][0]}}" />
+      
+      <input name="dish" id="dish" class="input" type="text" value="{{dish[0][0]}}" />
       </div>
       <div class="input-container ic2">
       <label class='lable-edit'>Allergies</label>
-        <input name="allergies" id="allergies" class="input" type="text" value="{{dish[0][1]}}" />
+      <input name="allergies" id="allergies" class="input" type="text" value="{{dish[0][1]}}" />
       </div>
       <div class="input-container ic2">
       <label class='lable-edit'>Image</label>
-        <input name="image" id="image" class="input" type="text" value="{{dish[0][3]}}" />
-        </div>
-      <button type="text" class="submit">submit</button>
-    </div>
-    <input type="hidden" name="id" value="{{dish[0][5]}}"></div>
+      <input name="image" id="image" class="input" type="text" value="{{dish[0][3]}}" />
+      </div>
+      <button type="text" class="submit">Edit</button>
+    
+    <input type="hidden" name="id" value="{{dish[0][5]}}">
     </form>
-
+    
+       <form action="/delete_food" method="POST">
+      <button class="submit">DELETE</button>
+      <input type="hidden" name="ids" value="{{id}}"/>
+       </form>
+    </div>
     {% endblock  %}
